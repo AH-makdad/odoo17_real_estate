@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend the user form view to add the property_ids field in a new notebook page -->
+    <record id="view_users_form_inherit" model="ir.ui.view">
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <!--            <xpath expr="//field[@name='mobile']" position="after">-->
+            <!--                <field name="score"/>-->
+            <xpath expr="//field[@name='mobile']" position="after">
+                <!--                <page string="Properties">-->
+                <field name="property_ids" widget="one2many_list">
+                    <tree string="Properties">
+                        <field name="name"/>
+                        <field name="expected_price"/>
+                        <field name="selling_price"/>
+
+
+                    </tree>
+                </field>
+                <!--                </page>-->
+            </xpath>
+        </field>
+    </record>
+    <record id="action_users" model="ir.actions.act_window">
+        <field name="name">Users</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new user
+            </p>
+        </field>
+    </record>
+</odoo>

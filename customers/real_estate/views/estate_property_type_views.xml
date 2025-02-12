@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_estate_property_type_list" model="ir.ui.view">
+        <field name="name">estate.property.type.list</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <tree string="Property Types">
+                <field name="name"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_estate_property_type_form" model="ir.ui.view">
+        <field name="name">estate.property.type.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form string="Property Type">
+                <header>
+                    <button class="oe_stat_button"
+                            type="object"
+                            icon="fa-money"
+                            name="count_offers"
+                            title="count"
+                    >
+                        <field string="offer" name="offer_count" widget="statinfo"/>
+                    </button>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="property_ids" widget="one2many_list">
+                            <tree string="Properties" editable="bottom">
+                                <field name="name"/>
+                                <field name="expected_price"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_estate_property_type_search" model="ir.ui.view">
+        <field name="name">estate.property.type.search</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <search string="Search Property Types">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_estate_property_type" model="ir.actions.act_window">
+        <field name="name">Property Types</field>
+        <field name="res_model">estate.property.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_estate_property_type_search"/>
+
+    </record>
+
+
+    <menuitem id="menu_estate_property_type" name="Property Types" action="action_estate_property_type"/>
+</odoo>
